@@ -1,2 +1,25 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<h1>New Product</h1>
+
+<% form_for @product do |f| %>
+	<div>
+		<%= f.label :name %>
+		<br>
+		<%= f.text_field :name%>
+	</div>
+	<div>
+		<%= f.label :price %>
+		<br>
+		<%= f.text_field :price%>
+	</div>
+	<div>
+		<%= f.label :description %>
+		<br>
+		<%= f.text_field :description%>
+	</div>
+	<div>
+		<%= f.label :stock_quantity%>
+		<br>
+		<%= f.text_field :stock_quantity%>
+	</div>
+<% end %>
+
