@@ -7,11 +7,11 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-  end
+  end# Loads: apps/views/products/new.html.erb
 
   def new
      @product = Product.new
-  end
+  end # We either redirect or render the new view
 
   def create
     @product = Product.new(product_params)
@@ -20,19 +20,29 @@ class ProductsController < ApplicationController
     else
       render :new
     end
-  end
+  end# Either redirect or render the new view
 
   def edit
-  end
+    @product = Product.find(params[:id])
+  end# Loads: app/views/products/edit.html.erb
 
   def update
-  end
+    @product = Product.find(params[:id])
+    if @product.update_attributes(product_params)
+      redirect_to @product
+    else
+      render :edit
+    end
+  end# Either redirect or render the edit view 
 
   def destroy
-  end
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to root_path
+  end# Always redirect to the root after we have deleted
 
   private
     def product_params
-      params.require(:product).permit(:name, :price, :description,:stock_quantity)
+      params.require(:product).permit(:name, :price, :description,:stock_quantity,:image_filename)
     end
 end 
